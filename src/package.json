@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js"
+    "start": "node ./index.js",
+    "docker-start": "node ./src/docker-start.js"
   },
   "keywords": [],
   "author": "",
