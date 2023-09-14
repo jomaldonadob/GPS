@@ -4,6 +4,14 @@ const FlightSchema = new mongoose.Schema({
     FK_Plate: {
         type: String, 
         required: true,
+        // Valida que la FK_Plate exista en la colección de Plane
+        validate: {
+            validator: async function(value) {
+                const plane = await mongoose.model("Plane").findOne({ Plate: value });
+                return plane !== null;
+            },
+            message: "La 'FK_Plate' proporcionada no existe en la colección de Plane."
+        }
     },
     latitude: {
         type: Number,

@@ -88,13 +88,15 @@ router.get("/Flight/:plate", async (req, res) => {
 });
 
 router.put("/Flight/:plate", async (req, res) => {
-    const flightPlate = req.params.plate;
-    const updatedFlightData = req.body;
     try {
-        const updatedFlight = await FlightSchema.findOneAndUpdate(flightPlate, updatedFlightData, { new: true });
+        const updatedFlight = await FlightSchema.findOneAndUpdate(
+            { FK_Plate: req.params.plate },
+            req.body,
+            { new: true, }
+        );
         res.json(updatedFlight);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.json({ message: error });
     }
 });
 
