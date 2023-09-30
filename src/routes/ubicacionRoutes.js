@@ -1,8 +1,6 @@
 
 const express = require('express');
 const router = express.Router();
-const app = express();
-const ubicacionController = require('../controllers/ubicacionController'); // Reemplaza la ruta con la ubicación correcta de tu controlador
 const PlaneSchema = require('../models/Plane');
 const FlightSchema = require('../models/Flight');
 
@@ -109,36 +107,5 @@ router.delete("/Flight/:plate", async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 });
-
-
-
-// Ruta para ejecutar una consulta
-router.get('/ejecutar-consulta', async (req, res) => {
-  try {
-    const { cypherQuery } = req.body;
-
-    // Llama a la función del controlador para ejecutar la consulta
-    const result = await ubicacionController.ejecutarConsulta(cypherQuery);
-
-    res.status(200).json({ resultado: result });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al ejecutar la consulta' });
-  }
-});
-
-router.post('/crear-nodo', async (req, res) => {
-    try {
-      const { cypherQuery } = req.body;
-  
-      // Llama a la función del controlador para ejecutar la consulta de creación de nodo
-      const result = await ubicacionController.ejecutarConsulta(cypherQuery);
-  
-      res.status(200).json({ mensaje: 'Nodo creado con éxito', resultado: result });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Error al crear el nodo' });
-    }
-  });
 
 module.exports = router;
