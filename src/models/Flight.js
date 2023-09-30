@@ -27,7 +27,7 @@ const FlightSchema = new mongoose.Schema({
     },
     date: {
         type: Date, 
-        required: true,
+        deafult: Date.now,
     },
     Fuel_percentage: {
         type: Number,
