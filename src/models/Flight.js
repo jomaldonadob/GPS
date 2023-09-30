@@ -25,10 +25,6 @@ const FlightSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    date: {
-        type: Date, 
-        deafult: Date.now,
-    },
     Fuel_percentage: {
         type: Number,
         required: true,
@@ -38,6 +34,6 @@ const FlightSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Plane", // Nombre del modelo relacionado
     },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model("Flight", FlightSchema);
