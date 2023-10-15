@@ -21,6 +21,15 @@ router.get("/Plane", async (req, res) => {
         res.json({ message: error });
     }
 });
+router.get("/Plane/Available", async (req, res) => {
+    try {
+        const planes = await PlaneSchema.find({ Availability: true });
+        res.json(planes[0]);
+
+    } catch (error) {
+        res.json({ message: error });
+    }
+});
 
 router.get("/Plane/:plate", async (req, res) => {
     try {

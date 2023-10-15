@@ -11,8 +11,8 @@ const cron = require('node-cron');
 
 mongo().then(()=> console.log("db connected"));
 
-///call generateRandomFlights every 5 minutes
-cron.schedule('*/2 * * * *', () => {
+///call generateRandomFlights every 2 minutes
+cron.schedule('*/60 * * * * *', () => {
   generateRandomFlights();
 });
 // Utiliza express.json() para analizar el cuerpo de las solicitudes JSON
